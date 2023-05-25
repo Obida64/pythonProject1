@@ -6,6 +6,9 @@ profileKeyboard = ReplyKeyboardMarkup(resize_keyboard=True)
 profileKeyboard.add('VST Plugin', 'Семплы')
 profileKeyboard.add('DAW', 'Гайды')
 
+profileKeyboardVST = ReplyKeyboardMarkup(resize_keyboard=True)
+profileKeyboardVST.add('MacOS', 'WIN')
+profileKeyboardVST.add('Назад')
 
 
 def showChannels():
@@ -19,8 +22,8 @@ def showChannels():
 
 #кнопки плагинов
 #vst
-inlineKB_vst = InlineKeyboardMarkup(row_width=2)
-inlineKB_vst.add(InlineKeyboardButton("Arturia Synthi V(Mac)", callback_data='artsyncv'),
+inlineKB_vstMac = InlineKeyboardMarkup(row_width=2)
+inlineKB_vstMac.add(InlineKeyboardButton("Arturia Synthi V(Mac)", callback_data='artsyncv'),
                  InlineKeyboardButton("Arturia Synclavier V(Mac)", callback_data='artsync'),
                  InlineKeyboardButton("Mongoose(Mac)", callback_data='mongoose'),
                  InlineKeyboardButton("T-Bone(Mac)", callback_data='tbone'),
@@ -51,6 +54,9 @@ inlineKB_vst.add(InlineKeyboardButton("Arturia Synthi V(Mac)", callback_data='ar
                  InlineKeyboardButton("Analog lab V(Mac)", callback_data='AnaloglabV'),
                  InlineKeyboardButton("Auto-Tune Vocal EQ(Mac)", callback_data='AutoTuneVocalEQ'),
                  InlineKeyboardButton("Vocal Compressor(Mac)", callback_data='VocalCompressor'))
+
+inlineKB_vstWin = InlineKeyboardMarkup(row_width=2)
+inlineKB_vstWin.add(InlineKeyboardButton("В разработке", url='https://www.youtube.com/@not_friendly'))
 
 
 #daw

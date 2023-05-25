@@ -29,7 +29,7 @@ async def check_sub_channel(channels, user_id):
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
     if await check_sub_channel(cfg.CHANNELS, message.from_user.id):
-        await message.answer("С помощью данного бота можешь найти интересующие тебя плагины(гайды)", reply_markup=nav.profileKeyboard)
+        await bot.send_photo(message.from_user.id, photo='https://imgur.com/1Xrf6EO', caption="С помощью данного бота можешь найти интересующие тебя плагины(гайды)\nВыбери что тебя интересует", reply_markup=nav.profileKeyboard)
     else:
         await bot.send_photo(message.from_user.id, photo="https://cpab.ru/wp-content/uploads/2021/10/win11_lock_hero_2-1024x575.jpg", caption=cfg.NOT_SUB_MESSAGE, reply_markup=nav.showChannels())
 
@@ -59,13 +59,24 @@ async def send_all(message: Message):
 async def find_vst(message: types.Message):
     if await check_sub_channel(cfg.CHANNELS, message.from_user.id):
         if message.text == 'VST Plugin':
-            await bot.send_photo(message.from_user.id, photo="https://imgur.com/Z7p5FRM", caption="Доступные VST\nСписок постоянно пополняется\nКликай на название откроется описание\nИщешь определенный плагин?\nнапиши в личку @tsmaksim", reply_markup=nav.inlineKB_vst)
+            await bot.send_photo(message.from_user.id, photo="https://imgur.com/QtWNmSA", caption="Выбери свою ОС:", reply_markup=nav.profileKeyboardVST)
+        if message.text == 'MacOS':
+            await bot.send_photo(message.from_user.id, photo="https://imgur.com/MOvMlMC",
+                                 caption="Доступные VST для MacOS\nСписок постоянно пополняется\nКликай на название откроется описание\nИщешь определенный плагин?\nнапиши в личку @tsmaksim",
+                                 reply_markup=nav.inlineKB_vstMac)
+        if message.text == 'WIN':
+            await bot.send_photo(message.from_user.id, photo="https://imgur.com/GAAoMap",
+                                 caption="Доступные VST для Windows\nСписок постоянно пополняется\nКликай на название откроется описание\nИщешь определенный плагин?\nнапиши в личку @tsmaksim",
+                                 reply_markup=nav.inlineKB_vstWin)
         if message.text == 'Семплы':
-            await bot.send_photo(message.from_user.id, photo="https://imgur.com/J6FHeTI", caption="Доступные Семплы\nСписок постоянно пополняется")
+            await bot.send_photo(message.from_user.id, photo="https://imgur.com/J6FHeTI", caption="Доступные Семплы\nСписок постоянно пополняется(в разработке)")
         if message.text == 'DAW':
             await bot.send_photo(message.from_user.id, photo="https://imgur.com/GXetGbU", caption="Доступные DAW\nСписок постоянно пополняется\nКликай на название откроется описание\nИщешь определенный DAW?\nнапиши в личку @tsmaksim", reply_markup=nav.inlineKB_DAW)
         if message.text == 'Гайды':
-            await bot.send_photo(message.from_user.id, photo="https://imgur.com/mnB2x7E", caption="Некоторые гайды\nСписок постоянно пополняется")
+            await bot.send_photo(message.from_user.id, photo="https://imgur.com/mnB2x7E", caption="Некоторые гайды\nСписок постоянно пополняется(в разработке)")
+        if message.text == 'Назад':
+            await bot.send_message(message.from_user.id, 'Ты вернулся на главную', reply_markup=nav.profileKeyboard)
+
     else:
         await bot.send_photo(message.from_user.id, photo="https://cpab.ru/wp-content/uploads/2021/10/win11_lock_hero_2-1024x575.jpg", caption=cfg.NOT_SUB_MESSAGE, reply_markup=nav.showChannels())
 
